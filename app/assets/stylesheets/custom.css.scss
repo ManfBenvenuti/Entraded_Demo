@@ -1,0 +1,59 @@
+// "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+// Change the background-color, font-color, and font-style
+body {
+  background-color: #F5F5F1;
+  color: #333333;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+// Change the color of the navbar
+.navbar-default {
+  background-color: #EFEFEB;
+}
+
+// Change the logo’s font style, thickness, color, and size
+.navbar-default .navbar-brand {
+  font-family: guardian-egyptt, georgia, serif;
+  font-weight: 400;
+  color: #d5641c;
+  font-size: 30px;
+}
+
+// Change the font style, size, thickness, and color of the navbar links
+// > li e > a significa gli elementi contenuti tra tags li o tags a
+.navbar-default .navbar-nav > li > a {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  color: #0192B5;
+}
+
+// Center the text for each Listing within its thumbnail
+.center {
+  text-align: center;
+}
+
+// Force Listings on a new row to start from the left
+.col-md-3:nth-child(4n+1) {
+  clear: left;
+}
+
+// Change the text size on our Show Listing page
+.col-md-6 {
+  h3 {
+    font-size: 45px;
+  }
+  h5 {
+    font-size: 25px;
+  }
+  p {
+    font-size: 18px;
+  }
+}
+
+
+
+
