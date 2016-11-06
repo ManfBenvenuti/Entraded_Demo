@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :listings
   
   # Per un motivo ben preciso devi scrivere i percorsi con questa convenzione
