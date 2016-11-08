@@ -6,7 +6,8 @@ class User < ActiveRecord::Base
 
   validates :name, presence: true
 
-  # Listing - User database relationship
+  # Listing - User database relationship --> dependent: :destroy così se
+  # cancelli lo user cancelli anche il listing
   has_many :listings, dependent: :destroy
   
 end
