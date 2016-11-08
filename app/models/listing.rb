@@ -10,4 +10,7 @@ class Listing < ActiveRecord::Base
   # Make sure there is an image
   validates_attachment_presence :image
 
+  # Listing - User database relationship
+  belongs_to :user
+
 end
