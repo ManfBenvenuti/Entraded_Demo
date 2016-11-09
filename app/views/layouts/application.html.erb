@@ -13,7 +13,6 @@
 	<div class="container">
 		
 		<!-- Enables flash messages to users with bootstrap style-->
-
     <% flash.each do |name, msg| %>
 	    <% if msg.is_a?(String) %>
 	      <div class="alert alert-<%= name.to_s == :notice ? "success" : "danger" %> alert-dismissable">

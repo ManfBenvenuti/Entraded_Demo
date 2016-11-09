@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   # perché funzioni il nomepagina_path shortcut nei link scritti in ruby
   get 'about' => "pages#about"
   get 'contact' => "pages#contact"
+  get 'seller' => "listings#seller"
 
   root 'listings#index'
 
