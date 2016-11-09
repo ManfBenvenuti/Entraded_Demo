@@ -66,5 +66,15 @@ body {
   }
 }
 
+// Set the background image for the jumbotron class (used in index page)
+.jumbotron {
+  background-image: url('sfondo_resized.jpg');
+  background-size: cover;
+  h1, h2 {
+    font-family: guardian-egyptt, georgia, serif;
+    color: white 
+  }
+}
+
 
 
