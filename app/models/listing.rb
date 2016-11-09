@@ -12,5 +12,7 @@ class Listing < ActiveRecord::Base
 
   # Listing - User database relationship
   belongs_to :user
+  # Order - Listing database relationship
+	has_many :orders
 
 end

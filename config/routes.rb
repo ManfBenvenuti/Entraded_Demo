@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
+  resources :orders
   devise_for :users
-  resources :listings
+  resources :listings do
+    # Insert the order ID in the listing URL
+    resources :orders
+  end
   
   # Per un motivo ben preciso devi scrivere i percorsi con questa convenzione
   # perché funzioni il nomepagina_path shortcut nei link scritti in ruby
