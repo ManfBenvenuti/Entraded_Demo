@@ -4,7 +4,7 @@ class Order < ActiveRecord::Base
 
 	# Order database relation with Listing database
 	belongs_to :listing
-	# Order - User database relationship
+	# Order - User database relationship  --> class_name DA STUDIARE BENE
 	belongs_to :buyer, class_name: "User"
   belongs_to :seller, class_name: "User"
 end

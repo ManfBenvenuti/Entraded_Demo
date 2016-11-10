@@ -1,3 +1,5 @@
+// Pagina resa inattiva (spero) perché lo stile confliggeva con le impostazioni di boot
+
 body {
   background-color: #fff;
   color: #333;

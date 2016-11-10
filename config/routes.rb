@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
-  resources :orders
   devise_for :users
   resources :listings do
-    # Insert the order ID in the listing URL
-    resources :orders
+    # Insert the order ID in the listing URL and restrict actions
+    resources :orders, only: [:new, :create]
   end
   
   # Per un motivo ben preciso devi scrivere i percorsi con questa convenzione
@@ -11,6 +10,8 @@ Rails.application.routes.draw do
   get 'about' => "pages#about"
   get 'contact' => "pages#contact"
   get 'seller' => "listings#seller"
+  get 'sales' => "orders#sales"
+  get 'purchases' => "orders#purchases"
 
   root 'listings#index'
 
