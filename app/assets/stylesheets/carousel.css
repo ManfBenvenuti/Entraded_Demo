@@ -77,6 +77,11 @@ body {
   margin-left: 10px;
 }
 
+.marketing .img-circle {
+  width: 240px;
+  height: 140px;
+}
+
 
 /* Featurettes
 ------------------------- */
