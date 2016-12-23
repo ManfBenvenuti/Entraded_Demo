@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :admins
   devise_for :users
   resources :listings do
     # Insert the order ID in the listing URL and restrict actions
@@ -12,8 +13,9 @@ Rails.application.routes.draw do
   get 'seller' => "listings#seller"
   get 'sales' => "orders#sales"
   get 'purchases' => "orders#purchases"
+  get 'listings' => "listings#index"
 
-  root 'listings#index'
+  root 'pages#home' 
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

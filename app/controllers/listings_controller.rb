@@ -1,7 +1,7 @@
 class ListingsController < ApplicationController
   before_action :set_listing, only: [:show, :edit, :update, :destroy]
   # Devise keyword :authenticate_user! to control which pages require users to be signed in
-  before_filter :authenticate_user!, only: [:seller, :new, :create, :edit, :update, :destroy]
+  before_filter :authenticate_user! #, only: [:seller, :new, :create, :edit, :update, :destroy]
   # Check user to allow only specific Listing owners to access certain pages
   before_filter :check_user, only: [:edit, :update, :destroy]
 
