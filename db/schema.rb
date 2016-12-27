@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161223143823) do
+ActiveRecord::Schema.define(version: 20161227091622) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -32,16 +32,19 @@ ActiveRecord::Schema.define(version: 20161223143823) do
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
 
   create_table "listings", force: :cascade do |t|
-    t.string   "name"
-    t.text     "description"
     t.decimal  "price"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.integer  "user_id"
+    t.string   "category"
+    t.string   "type",               limit: 150
+    t.string   "flow",               limit: 200
+    t.string   "pressure",           limit: 150
+    t.integer  "year",               limit: 5
   end
 
   create_table "orders", force: :cascade do |t|
