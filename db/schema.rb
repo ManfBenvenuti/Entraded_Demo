@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20161227091622) do
     t.datetime "image_updated_at"
     t.integer  "user_id"
     t.string   "category"
-    t.string   "type",               limit: 150
+    t.string   "variety",            limit: 150
     t.string   "flow",               limit: 200
     t.string   "pressure",           limit: 150
     t.integer  "year",               limit: 5

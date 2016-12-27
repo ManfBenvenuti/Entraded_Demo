@@ -4,7 +4,7 @@ class Listing < ActiveRecord::Base
   
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
-  validates :category, :price, :type, :year, presence: true
+  validates :category, :price, :variety, :year, presence: true
   # Make sure price is a number and is >0
   validates :price, numericality: { greater_than: 0 }
   # Make sure there is an image

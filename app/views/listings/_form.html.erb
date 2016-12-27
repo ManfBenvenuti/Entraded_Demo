@@ -15,11 +15,11 @@
 
   <div class="form-group">
     <%= f.label :category %><br>
-    <%= f.text_area :category, class: "form-control" %>
+    <%= f.select(:category, ['Separador', 'Bomba', 'Calentador'], {include_blank: "Select something"}, class: "form-control") %>
   </div>
   <div class="form-group">
-    <%= f.label :type %><br>
-    <%= f.text_field :type, class: "form-control" %>
+    <%= f.label :variety %><br>
+    <%= f.text_field :variety, class: "form-control" %>
   </div>
   <div class="form-group">
     <%= f.label :flow %><br>
