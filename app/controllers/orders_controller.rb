@@ -2,10 +2,12 @@ class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
   # Check that the user is signed in
   before_action :authenticate_user!
+  after_action :initialize_status, only: :create
 
   # Orders actions that correspond to same name views
   def sales
-    @orders = Order.all.where(seller: current_user).order("created_at DESC")
+    @orders = Order.where('"orders"."seller_id" = ? AND "orders"."status" NOT LIKE ?', current_user, "sold").order("created_at DESC")
+    @orders_sold = Order.where('"orders"."seller_id" = ? AND "orders"."status" LIKE ?', current_user, "sold").order("created_at DESC")
   end
   def purchases
     @orders = Order.all.where(buyer: current_user).order("created_at DESC")
@@ -42,7 +44,7 @@ class OrdersController < ApplicationController
     @listing = Listing.find(params[:listing_id])
     # Define the seller param
     @seller = @listing.user
-    
+
     # buyer_id listing_id and seller_id columns set when an Order is created
     @order.listing_id = @listing.id
     @order.buyer_id = current_user.id
@@ -50,6 +52,8 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.save
+        UserMailer.received_order(@seller, @order).deliver_now
+
         format.html { redirect_to purchases_path, notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
       else
@@ -57,6 +61,26 @@ class OrdersController < ApplicationController
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def accept
+    @order = Order.find params[:id]
+    @order.status = "negotiating"
+    @order.save
+  end
+
+  def refuse
+    @order = Order.find params[:id]
+    @order.status = "refused"
+    if @order.save
+      UserMailer.refused_order(@order.buyer, @order).deliver_now
+    end
+  end
+
+  def conclude
+    @order = Order.find params[:id]
+    @order.status = "sold"
+    @order.save
   end
 
   # # PATCH/PUT /orders/1
@@ -92,5 +116,12 @@ class OrdersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
       params.require(:order).permit(:address, :city, :state)
+    end
+
+    # Set status in processing after create (get order by params)
+    def initialize_status
+      @order = Order.find params[:id]
+      @order.status = "processing"
+      @order.save
     end
 end

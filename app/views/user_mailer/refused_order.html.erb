@@ -1,0 +1,27 @@
+<%= render 'user_mailer/header_mail' %>
+
+<tr>
+    <td valign="top" class="bodyContent" mc:edit="body_content" style="text-align: center; color: black;">
+        <h1 style="color: black">Your offer has been declined!</h1>
+        <p style="padding: 2% 0% 0%; color: black">Your offer for the item <b><%= @order.listing.description %></b> was declined by the seller</p>
+        <br />
+        <br />
+        <p style="padding: 2% 0% 0%; color: black">That was unfortunate.</p>
+        <p style="padding: 2% 0% 0%; color: black">Maybe you can find a similar offer amongst the listings:</p>
+
+        <p style="padding: 0% 0% 0%;">
+			<span style="width:45%"><%= link_to 'Go to listings', listings_url , style: "font-size: 16px;background-color: #8badda;border-color: #8badda;color: white !important;text-decoration: none;padding: 5px;margin: 10px 5px;min-width: 75px;text-align: center;" %></span>
+		</p>
+
+		<p style="padding: 2% 0% 0%; color: black">Or at link: <%= listings_url %></p>
+
+		<p style="padding: 2% 0% 0%; color: black">As always you can call Ferrante for your problems!</p>
+
+
+		<p style="color: black"><b>Have a nice day,</b></p>
+
+		<p style="color: black"><b>Yo' sista</b></p>
+    </td>
+</tr>
+
+<%= render 'user_mailer/footer_mail' %>

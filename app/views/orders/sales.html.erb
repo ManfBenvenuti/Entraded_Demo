@@ -9,10 +9,41 @@
     <th class="center">Variety</th>
     <th class="center">Price</th>
     <th class="center">Customer</th>
+    <th class="center">Date Ordered</th>
+    <th class="center"></th>
+  </tr>
+
+  <% @orders.each do |order| %>
+    <tr>
+      <td class="center"><%= image_tag order.listing.image.url(:thumb) %></td>
+      <td class="center"><%= order.listing.category %></td>
+      <td class="center"><%= order.listing.variety %></td>
+      <td class="center"><%= number_to_currency(order.listing.price) %></td>
+      <% if @order.status == "negotiation"%>
+        <td class="center"><%= order.buyer.name %></td>
+      <% else %>
+        <td class="center">
+          <%= link_to "Accept", accept_order_url, class: "btn btn-small btn-success" %> |
+          <%= link_to "Refuse", refuse_order_url, class: "btn btn-small btn-danger" %>
+        </td>
+      <% end %>
+      <td class="center"><%= order.created_at.strftime("%B %-d, %Y") %></td>
+      <td class="center"><%= link_to "Sold", conclude_order_url, class: "btn btn-small btn-primary" %></td>
+    </tr>
+  <% end %>
+</table>
+
+<table class="table table-striped table-bordered">
+  <tr>
+    <th class="center">Image</th>
+    <th class="center">Item</th>
+    <th class="center">Variety</th>
+    <th class="center">Price</th>
+    <th class="center">Customer</th>
     <th class="center">Date Sold</th>
   </tr>
-  
-  <% @orders.each do |order| %>
+
+  <% @orders_sold.each do |order| %>
     <tr>
       <td class="center"><%= image_tag order.listing.image.url(:thumb) %></td>
       <td class="center"><%= order.listing.category %></td>

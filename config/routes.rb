@@ -1,74 +1,39 @@
 Rails.application.routes.draw do
   devise_for :admins
   devise_for :users
+
+  root 'pages#home'
+
   resources :listings do
     # Insert the order ID in the listing URL and restrict actions
     resources :orders, only: [:new, :create]
   end
-  
+
+  # Tipi di chiamate che posso fare con lo standard HTTP: Get, Post, Update, Patch, Delete. Get = visualizza il dato, Post = crea il dato,
+  # Update/Patch = Modifica il dato, Delete = cancella il dato. Il tipo di chiamata HTTP la specifichi nel link_to non nel URL
+  # Resurces come comportamento di default (convenzione) associa i metodi del controller alle chiamate (es per metodo degli ordini --> :orders
+  # /orders(get) --> metodo index
+  # /orders(post) --> metodo create
+  # /orders(update) --> metodo update
+  # /orders(delete) --> metodo delete )
+
+  resources :orders, except: [:new, :create] do
+    # Member riguarda uno specifico oggetto
+    member do
+      post 'accept'
+      post 'refuse'
+      post 'conclude'
+    end
+    # Collection mi serve a determinare quale lista di dati mostrare per il generico URL (quando non è specificato un ID specifico nello URL)
+    collection do
+      get 'sales'
+      get 'purchases'
+    end
+  end
   # Per un motivo ben preciso devi scrivere i percorsi con questa convenzione
   # perché funzioni il nomepagina_path shortcut nei link scritti in ruby
   get 'about' => "pages#about"
   get 'contact' => "pages#contact"
   get 'seller' => "listings#seller"
-  get 'sales' => "orders#sales"
-  get 'purchases' => "orders#purchases"
   get 'listings' => "listings#index"
-
-  root 'pages#home' 
-
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
-
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
-
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
-
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
-
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
-
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
 end

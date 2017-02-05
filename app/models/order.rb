@@ -6,5 +6,5 @@ class Order < ActiveRecord::Base
 	belongs_to :listing
 	# Order - User database relationship  --> class_name DA STUDIARE BENE
 	belongs_to :buyer, class_name: "User"
-  belongs_to :seller, class_name: "User"
+  	belongs_to :seller, class_name: "User"
 end
