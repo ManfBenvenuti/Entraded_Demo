@@ -3,7 +3,7 @@
 <tr>
     <td valign="top" class="bodyContent" mc:edit="body_content" style="text-align: center; color: black;">
         <h1 style="color: black">Your offer has been declined!</h1>
-        <p style="padding: 2% 0% 0%; color: black">Your offer for the item <b><%= @order.listing.description %></b> was declined by the seller</p>
+        <p style="padding: 2% 0% 0%; color: black">Your offer for the item <b><%= @order.listing.category + " " + @order.listing.variety %></b> was declined by the seller</p>
         <br />
         <br />
         <p style="padding: 2% 0% 0%; color: black">That was unfortunate.</p>
@@ -24,4 +24,3 @@
     </td>
 </tr>
 
-<%= render 'user_mailer/footer_mail' %>

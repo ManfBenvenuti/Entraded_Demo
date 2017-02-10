@@ -7,7 +7,11 @@ Rails.application.routes.draw do
   resources :listings do
     # Insert the order ID in the listing URL and restrict actions
     resources :orders, only: [:new, :create]
+    resources :listing_steps
+
   end
+
+  
 
   # Tipi di chiamate che posso fare con lo standard HTTP: Get, Post, Update, Patch, Delete. Get = visualizza il dato, Post = crea il dato,
   # Update/Patch = Modifica il dato, Delete = cancella il dato. Il tipo di chiamata HTTP la specifichi nel link_to non nel URL
@@ -36,4 +40,9 @@ Rails.application.routes.draw do
   get 'contact' => "pages#contact"
   get 'seller' => "listings#seller"
   get 'listings' => "listings#index"
+  get 'show_listings' => "pages#show_listings"
+
+
+
+
 end

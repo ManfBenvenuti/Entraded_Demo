@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170205134534) do
+ActiveRecord::Schema.define(version: 20170210134728) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -32,20 +32,29 @@ ActiveRecord::Schema.define(version: 20170205134534) do
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
 
   create_table "listings", force: :cascade do |t|
-    t.text     "description"
     t.decimal  "price"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.integer  "user_id"
+    t.string   "status"
+    t.string   "macro_category"
     t.string   "category"
-    t.string   "variety",            limit: 150
-    t.string   "flow",               limit: 200
-    t.string   "pressure",           limit: 150
-    t.integer  "year",               limit: 5
+    t.string   "sub_category"
+    t.string   "short_description",  limit: 70
+    t.string   "long_description"
+    t.string   "classification"
+    t.string   "key_definition",     limit: 30
+    t.string   "properties"
+    t.string   "brand"
+    t.string   "equipment",                     default: "-"
+    t.string   "notes",                         default: "-"
+    t.string   "measurements"
+    t.integer  "quantity"
+    t.string   "state"
   end
 
   create_table "orders", force: :cascade do |t|

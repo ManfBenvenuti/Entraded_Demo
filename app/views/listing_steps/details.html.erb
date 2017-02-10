@@ -1,0 +1,71 @@
+<%= form_for(@listing, html: { multipart: true }) do |f| %>
+  <% if @listing.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <h4><%= pluralize(@listing.errors.count, "error") %> prohibited this listing from being saved:</h4>
+
+      <ul>
+      <% @listing.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="form-group">
+    <%= f.label :key_definition, "Clave Adjetivo" %><br>
+    <%= f.text_field :key_definition, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :short_description, "Descripción Corta" %><br>
+    <%= f.text_field :short_description, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :long_description, "Descripción Larga" %><br>
+    <%= f.text_field :long_description, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :classification, "Clasificación" %><br>
+    <%= f.text_field :classification, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :properties, "Propiedades" %><br>
+    <%= f.text_area :properties, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :brand, "Marcas" %><br>
+    <%= f.text_field :brand, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :equipment, "Equipos" %><br>
+    <%= f.text_field :equipment, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :notes, "Otras Descripciones" %><br>
+    <%= f.text_area :notes, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :measurements, "Unidad Medida" %><br>
+    <%= f.text_field :measurements, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :quantity, "Cantidad" %><br>
+    <%= f.text_field :quantity, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :price %><br>
+    <%= f.text_field :price, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :image %><br>
+    <%= f.file_field :image, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <!-- f.hidden_field :status, value: "initialized" -->
+    <%= f.submit class: "btn btn-info"%>
+  </div>
+<% end %>

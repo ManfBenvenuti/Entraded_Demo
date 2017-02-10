@@ -26,6 +26,9 @@ class ListingsController < ApplicationController
   # GET /listings/new
   def new
     @listing = Listing.new
+    @listing.user_id = current_user.id
+    @listing.save(:validate => false)
+    redirect_to listing_listing_step_path(:listing_id => @listing.id, :id => "first")
   end
 
   # GET /listings/1/edit
@@ -41,7 +44,8 @@ class ListingsController < ApplicationController
 
     respond_to do |format|
       if @listing.save
-        format.html { redirect_to @listing, notice: 'Listing was successfully created.' }
+        byebug
+        format.html { redirect_to listing_listing_step_path(:listing_id => @listing.id, :id => "category"), notice: 'You are creating a Listing' }
         format.json { render :show, status: :created, location: @listing }
       else
         format.html { render :new }
@@ -82,7 +86,7 @@ class ListingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def listing_params
-      params.require(:listing).permit(:category, :price, :image, :variety, :flow, :pressure, :year)
+      params.require(:listing).permit(:category, :price, :image, :macro_category, :sub_category, :short_description, :long_description, :status, :classification, :key_definition, :properties, :brand, :equipment, :notes, :measurements, :quantity, :state)
     end
 
     # Allow only specific Listing owners to access certain pages

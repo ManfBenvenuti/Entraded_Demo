@@ -41,6 +41,10 @@ body {
   text-align: center;
 }
 
+.space {
+  margin-top: 1em;
+}
+
 // Force Listings on a new row to start from the left
 .col-md-3:nth-child(4n+1) {
   clear: left;
@@ -80,6 +84,5 @@ body {
     color: white 
   }
 }
-
 
 

@@ -1,0 +1,55 @@
+<%= form_for @listing, url: wizard_path do |f| %>
+  <% if @listing.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <h4><%= pluralize(@listing.errors.count, "error") %> prohibited this listing from being saved:</h4>
+
+      <ul>
+      <% @listing.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if @listing.category == "Valvulas y Accesorios" %>
+    <div class="form-group">
+      <%= f.label :sub_category %><br>
+      <%= f.select(:sub_category, ['Valvulas de Pozo', 'Sist de Seguridad BdP'], {include_blank: "Select something"}, class: "form-control") %>
+    </div>
+  <% elsif @listing.category == "Herramientas Pozo" %>
+    <div class="form-group">
+      <%= f.label :sub_category %><br>
+      <%= f.select(:sub_category, ['Packer', 'Bombas', 'Varillas'], {include_blank: "Select something"}, class: "form-control") %>
+    </div>
+  <% elsif @listing.category == "Equipos Extracción" %>
+    <div class="form-group">
+      <%= f.label :sub_category %><br>
+      <%= f.select(:sub_category, ['AIBs', 'Transformadores', 'Motores'], {include_blank: "Select something"}, class: "form-control") %>
+    </div>
+  <% elsif @listing.category == "Captacion" %>
+    <div class="form-group">
+      <%= f.label :sub_category %><br>
+      <%= f.select(:sub_category, ['Separadores', 'Calentadores', 'Tanques', 'Valvulas', 'Manifold', 'Otros'], {include_blank: "Select something"}, class: "form-control") %>
+    </div>
+
+  <% elsif @listing.category == "Plantas" %>
+    <div class="form-group">
+      <%= f.label :sub_category %><br>
+      <%= f.select(:sub_category, ['Deshidratadoras', 'Compresores', 'Generadores', 'Bombas', 'Tableros', 'Otros'], {include_blank: "Select something"}, class: "form-control") %>
+    </div>
+
+  <% else %>
+    <div class="form-group">
+      <%= f.label :sub_category %><br>
+      <%= f.select(:sub_category, ['Other'], {include_blank: "Select something"}, class: "form-control") %>
+    </div>
+  <% end %>
+
+
+
+
+  <div class="form-group">
+    <%= f.submit class: "btn btn-info"%>
+  </div>
+<% end %>

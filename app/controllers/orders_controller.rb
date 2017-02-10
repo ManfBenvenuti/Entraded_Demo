@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
   # Check that the user is signed in
   before_action :authenticate_user!
-  after_action :initialize_status, only: :create
+  #after_action :initialize_status, only: :create
 
   # Orders actions that correspond to same name views
   def sales
@@ -49,12 +49,13 @@ class OrdersController < ApplicationController
     @order.listing_id = @listing.id
     @order.buyer_id = current_user.id
     @order.seller_id = @seller.id
+    @order.status = "processing"
 
     respond_to do |format|
       if @order.save
         UserMailer.received_order(@seller, @order).deliver_now
 
-        format.html { redirect_to purchases_path, notice: 'Order was successfully created.' }
+        format.html { redirect_to purchases_orders_path(@orders_id), notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new }
@@ -67,6 +68,7 @@ class OrdersController < ApplicationController
     @order = Order.find params[:id]
     @order.status = "negotiating"
     @order.save
+    redirect_to sales_orders_path
   end
 
   def refuse
@@ -75,12 +77,14 @@ class OrdersController < ApplicationController
     if @order.save
       UserMailer.refused_order(@order.buyer, @order).deliver_now
     end
+    redirect_to sales_orders_path
   end
 
   def conclude
     @order = Order.find params[:id]
     @order.status = "sold"
     @order.save
+    redirect_to sales_orders_path
   end
 
   # # PATCH/PUT /orders/1
@@ -120,7 +124,7 @@ class OrdersController < ApplicationController
 
     # Set status in processing after create (get order by params)
     def initialize_status
-      @order = Order.find params[:id]
+      @order = Order.find(params[:id])
       @order.status = "processing"
       @order.save
     end

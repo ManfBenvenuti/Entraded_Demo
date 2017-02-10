@@ -1,7 +1,11 @@
 <!-- <p id="notice"><%= notice %></p> -->
 
 <div class="jumbotron text-right">
+
   <div class="container">
+    <% if user_signed_in? %>
+      <%= link_to 'Add New Listing', new_listing_path, class: "btn btn-success btn-lg" %>
+    <% end %>
     <h1>Share your energy</br> with trusted partners</h1>
     <h2>Lets make it 2 pieceses please</h2>
   </div>
@@ -10,67 +14,416 @@
 <div>
 
   <!-- Nav tabs -->
-  <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
-    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
-    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
-    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+  <ul class="nav nav-tabs text-center" role="tablist">
+    <li role="presentation" class="col-sm-3"><a href="#tuberias" aria-controls="tuberias" role="tab" data-toggle="tab"><h3>Tuberias</h3></a></li>
+    <li role="presentation" class="col-sm-3"><a href="#equipamiento_pozos" aria-controls="equipamiento_pozos" role="tab" data-toggle="tab"><h3>Equipamiento Pozos</h3></a></li>
+    <li role="presentation" class="col-sm-3"><a href="#equipos_superficie" aria-controls="equipos_superficie" role="tab" data-toggle="tab"><h3>Equipos Superficie</h3></a></li>
+    <li role="presentation" class="col-sm-3"><a href="#usado" aria-controls="usado" role="tab" data-toggle="tab"><h3>Usado</h3></a></li>
   </ul>
 
-  <!-- Tab panes -->
-  <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="home">...</div>
-    <div role="tabpanel" class="tab-pane" id="profile">
-      <div class="center">
+  <!-- Tabs -->
+  <div class="tab-content"> 
+    <!-- Tuberias -->
+    <div role="tabpanel" class="tab-pane" id="tuberias">
+      <div class="text-center space">
         <div class="row">
-          <% @listings.each do |listing| %>
+          <!-- Categories -->
             <div class="col-md-3">
               <div class="thumbnail">
-                <%= link_to image_tag(listing.image.url), listing %>
+                <%= image_tag("logo1.png")%>
                 <div class="caption">
-                  <h3> <%= listing.category %> </h3>
-                  <p> <%= number_to_currency(listing.price) %> </p>
+                  <h3> Casing </h3>
+                  <!-- Si potrebbe mettere una conta di quanti ce ne sono -->
                   <!-- Button trigger modal -->
-                  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-                    Launch demo modal
+                  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#tuberias_casingModal">
+                    Go to the listings
                   </button>
                 </div>
               </div>
             </div>
-          <% end %>
+            <div class="col-md-3">
+              <div class="thumbnail">
+                <%= image_tag("logo1.png")%>
+                <div class="caption">
+                  <h3> Tubing </h3>
+                  <!-- Si potrebbe mettere una conta di quanti ce ne sono -->
+                  <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#tuberias_tubingModal">
+                    Go to the listings
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="thumbnail">
+                <%= image_tag("logo1.png")%>
+                <div class="caption">
+                  <h3> Linepipe </h3>
+                  <!-- Si potrebbe mettere una conta di quanti ce ne sono -->
+                  <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#tuberias_linepipeModal">
+                    Go to the listings
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="thumbnail">
+                <%= image_tag("logo1.png")%>
+                <div class="caption">
+                  <h3> Otros </h3>
+                  <!-- Si potrebbe mettere una conta di quanti ce ne sono -->
+                  <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#tuberias_otherModal">
+                    Go to the listings
+                  </button>
+                </div>
+              </div>
+            </div>
+          <!-- End of Categories -->
         </div>
       </div>
-
     </div>
-    <div role="tabpanel" class="tab-pane" id="messages">...</div>
-    <div role="tabpanel" class="tab-pane" id="settings">...</div>
+    <!-- End of Tuberias -->
+
+    <!-- Equipamiento Pozos -->
+    <div role="tabpanel" class="tab-pane" id="equipamiento_pozos">
+      <div class="text-center space">
+        <div class="row">
+          <!-- Categories -->
+            <div class="col-md-3">
+              <div class="thumbnail">
+                <%= image_tag("logo1.png")%>
+                <div class="caption">
+                  <h3> Cabezas de Pozo </h3>
+                  <!-- Si potrebbe mettere una conta di quanti ce ne sono -->
+                  <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#pozos_cabezaModal">
+                    Go to the listings
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="thumbnail">
+                <%= image_tag("logo1.png")%>
+                <div class="caption">
+                  <h3> Valvulas y Accesorios </h3>
+                  <!-- Si potrebbe mettere una conta di quanti ce ne sono -->
+                  <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#pozos_valvulasModal">
+                    Go to the listings
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="thumbnail">
+                <%= image_tag("logo1.png")%>
+                <div class="caption">
+                  <h3> Herramientas Pozo </h3>
+                  <!-- Si potrebbe mettere una conta di quanti ce ne sono -->
+                  <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#pozos_herramientasModal">
+                    Go to the listings
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="thumbnail">
+                <%= image_tag("logo1.png")%>
+                <div class="caption">
+                  <h3> Equipos Extracción </h3>
+                  <!-- Si potrebbe mettere una conta di quanti ce ne sono -->
+                  <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#pozos_extraccionModal">
+                    Go to the listings
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="thumbnail">
+                <%= image_tag("logo1.png")%>
+                <div class="caption">
+                  <h3> Otros </h3>
+                  <!-- Si potrebbe mettere una conta di quanti ce ne sono -->
+                  <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#pozos_otrosModal">
+                    Go to the listings
+                  </button>
+                </div>
+              </div>
+            </div>
+          <!-- End of Categories -->
+        </div>
+      </div>
+    </div>
+    <!-- End of Equipamiento Pozos -->
+
+    <!-- Equipos Superficie -->
+    <div role="tabpanel" class="tab-pane" id="equipos_superficie">
+      <div class="text-center space">
+        <div class="row">
+          <!-- Categories -->
+            <div class="col-md-3">
+              <div class="thumbnail">
+                <%= image_tag("logo1.png")%>
+                <div class="caption">
+                  <h3> Captacion </h3>
+                  <!-- Si potrebbe mettere una conta di quanti ce ne sono -->
+                  <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#superficie_captacionModal">
+                    Go to the listings
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="thumbnail">
+                <%= image_tag("logo1.png")%>
+                <div class="caption">
+                  <h3> Plantas </h3>
+                  <!-- Si potrebbe mettere una conta di quanti ce ne sono -->
+                  <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#superficie_plantaModal">
+                    Go to the listings
+                  </button>
+                </div>
+              </div>
+            </div>
+          <!-- End of Categories -->
+        </div>
+      </div>
+    </div>
+    <!-- End of Equipos Superficie -->
+
+    <!-- Usado -->
+    <div role="tabpanel" class="tab-pane" id="usado">
+      <div class="text-center space">
+        <div class="row">
+          <!-- Categories -->
+            <div class="col-md-3">
+              <div class="thumbnail">
+                <%= image_tag("logo1.png")%>
+                <div class="caption">
+                  <h3> Todo el Material Usado </h3>
+                  <!-- Si potrebbe mettere una conta di quanti ce ne sono -->
+                  <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#usadoModal">
+                    Go to the listings
+                  </button>
+                </div>
+              </div>
+            </div>
+          <!-- End of Categories -->
+        </div>
+      </div>
+    </div>
+    <!-- End of Usado -->
   </div>
+  <!-- End of Tabs -->
 
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<!-- Modals -->
+
+<!-- Tuberias -->
+<div class="modal fade" id="tuberias_casingModal" tabindex="-1" role="dialog" aria-labelledby="tuberias_casingModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-      </div>
-      <div class="modal-body">
-        ...
+        <h4 class="modal-title" id="tuberias_casingModalLabel">Casings</h4>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <%= link_to "Go to all Casings", show_listings_path(:category => "Casing", :sub_category => "Other"), class: "btn btn-lg btn-primary space"%>
       </div>
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="tuberias_tubingModal" tabindex="-1" role="dialog" aria-labelledby="tuberias_tubingModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="tuberias_tubingModalLabel">Tubings</h4>
+      </div>
+      <div class="modal-footer">
+        <%= link_to "Go to all Tubings", show_listings_path(:category => "Tubing", :sub_category => "Other"), class: "btn btn-lg btn-primary space"%>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="tuberias_linepipeModal" tabindex="-1" role="dialog" aria-labelledby="tuberias_linepipeModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="tuberias_linepipeModalLabel">Linepipes</h4>
+      </div>
+      <div class="modal-footer">
+        <%= link_to "Go to all Linepipes", show_listings_path(:category => "Linepipe", :sub_category => "Other"), class: "btn btn-lg btn-primary space"%>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="tuberias_otherModal" tabindex="-1" role="dialog" aria-labelledby="tuberias_otherModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="tuberias_otherModalLabel">Other</h4>
+      </div>
+      <div class="modal-footer">
+        <%= link_to "Go to all Others", show_listings_path(:category => "Otros", :sub_category => "Other"), class: "btn btn-lg btn-primary space"%>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End of Tuberias -->
+
+<!-- Equipamiento Pozos -->
+<div class="modal fade" id="pozos_cabezaModal" tabindex="-1" role="dialog" aria-labelledby="pozos_cabezaModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="pozos_cabezaModalLabel">Cabezas de Pozo</h4>
+      </div>
+      <div class="modal-footer">
+        <%= link_to "Go to all Cabezas de Pozo", show_listings_path(:category => "Cabezas de Pozo", :sub_category => "Other"), class: "btn btn-lg btn-primary space"%>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="pozos_valvulasModal" tabindex="-1" role="dialog" aria-labelledby="pozos_valvulasModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="pozos_valvulasModalLabel">Valvulas y Accesorios</h4>
+      </div>
+      <div class="modal-footer">
+        <%= link_to "Valvulas de Pozo", show_listings_path(:category => "Valvulas y Accesorios", :sub_category => "Valvulas de Pozo"), class: "btn btn-lg btn-primary space"%>
+
+        <%= link_to "Sist de Seguridad BdP", show_listings_path(:category => "Valvulas y Accesorios", :sub_category => "Sist de Seguridad BdP"), class: "btn btn-lg btn-primary space"%>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="pozos_herramientasModal" tabindex="-1" role="dialog" aria-labelledby="pozos_herramientasModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="pozos_herramientasModalLabel">Herramientas Pozo</h4>
+      </div>
+      <div class="modal-footer">
+        <%= link_to "Packer", show_listings_path(:category => "Herramientas Pozo", :sub_category => "Packer"), class: "btn btn-lg btn-primary space"%>
+        <%= link_to "Bombas", show_listings_path(:category => "Herramientas Pozo", :sub_category => "Bombas"), class: "btn btn-lg btn-primary space"%>
+        <%= link_to "Varillas", show_listings_path(:category => "Herramientas Pozo", :sub_category => "Varillas"), class: "btn btn-lg btn-primary space"%>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="pozos_extraccionModal" tabindex="-1" role="dialog" aria-labelledby="pozos_extraccionModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="pozos_extraccionModalLabel">Equipos Extracción</h4>
+      </div>
+      <div class="modal-footer">
+        <%= link_to "AIBs", show_listings_path(:category => "Equipos Extracción", :sub_category => "AIBs"), class: "btn btn-lg btn-primary space"%>
+        <%= link_to "Go to all Others", show_listings_path(:category => "Equipos Extracción", :sub_category => "Transformadores"), class: "btn btn-lg btn-primary space"%>
+        <%= link_to "Go to all Others", show_listings_path(:category => "Equipos Extracción", :sub_category => "Motores"), class: "btn btn-lg btn-primary space"%>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="pozos_otrosModal" tabindex="-1" role="dialog" aria-labelledby="pozos_otrosModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="pozos_otrosModalLabel">Otros Equipamiento Pozos</h4>
+      </div>
+      <div class="modal-footer">
+        <%= link_to "Otros", show_listings_path(:category => "Otros", :sub_category => "Other"), class: "btn btn-lg btn-primary space"%>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End of Equipamiento Pozos -->
+
+<!-- Equipos Superficie -->
+<div class="modal fade" id="superficie_captacionModal" tabindex="-1" role="dialog" aria-labelledby="superficie_captacionModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="superficie_captacionModalLabel">Captacion</h4>
+      </div>
+      <div class="modal-footer">
+        <%= link_to "Separadores", show_listings_path(:category => "Captacion", :sub_category => "Separadores"), class: "btn btn-lg btn-primary space"%>
+        <%= link_to "Calentadores", show_listings_path(:category => "Captacion", :sub_category => "Calentadores"), class: "btn btn-lg btn-primary space"%>
+        <%= link_to "Tanques", show_listings_path(:category => "Captacion", :sub_category => "Tanques"), class: "btn btn-lg btn-primary space"%>
+        <%= link_to "Valvulas", show_listings_path(:category => "Captacion", :sub_category => "Valvulas"), class: "btn btn-lg btn-primary space"%>
+        <%= link_to "Manifold", show_listings_path(:category => "Captacion", :sub_category => "Manifold"), class: "btn btn-lg btn-primary space"%>
+        <%= link_to "Otros", show_listings_path(:category => "Captacion", :sub_category => "Otros"), class: "btn btn-lg btn-primary space"%>  
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="superficie_plantaModal" tabindex="-1" role="dialog" aria-labelledby="superficie_plantaModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="superficie_plantaModalLabel">Plantas</h4>
+      </div>
+      <div class="modal-footer">
+        <%= link_to "Deshidratadoras", show_listings_path(:category => "Plantas", :sub_category => "Deshidratadoras"), class: "btn btn-lg btn-primary space"%>
+        <%= link_to "Compresores", show_listings_path(:category => "Plantas", :sub_category => "Compresores"), class: "btn btn-lg btn-primary space"%>
+        <%= link_to "Generadores", show_listings_path(:category => "Plantas", :sub_category => "Generadores"), class: "btn btn-lg btn-primary space"%>
+        <%= link_to "Bombas", show_listings_path(:category => "Plantas", :sub_category => "Bombas"), class: "btn btn-lg btn-primary space"%>
+        <%= link_to "Tableros", show_listings_path(:category => "Plantas", :sub_category => "Tableros"), class: "btn btn-lg btn-primary space"%>
+        <%= link_to "Otros", show_listings_path(:category => "Plantas", :sub_category => "Otros"), class: "btn btn-lg btn-primary space"%>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End of Equipos Superficie -->
+
+<!-- Usado -->
+<div class="modal fade" id="usadoModal" tabindex="-1" role="dialog" aria-labelledby="usadoModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="usadoModalLabel">Go to Material Usado</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-lg btn-primary">Listings</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End of Usado -->
+
+<!-- End of Modals -->
 
 
 
 <br>
 
-<% if user_signed_in? %>
-  <%= link_to 'New Listing', new_listing_path, class: "btn btn-info" %>
-<% end %>

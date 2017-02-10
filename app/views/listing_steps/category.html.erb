@@ -1,0 +1,36 @@
+<%= form_for @listing, url: wizard_path do |f| %>
+  <% if @listing.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <h4><%= pluralize(@listing.errors.count, "error") %> prohibited this listing from being saved:</h4>
+
+      <ul>
+      <% @listing.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <% if @listing.macro_category == "Tuberias" %>
+    <div class="form-group">
+      <%= f.label :category %><br>
+      <%= f.select(:category, ['Casing', 'Tubing', 'Linepipe', 'Otros'], {include_blank: "Select something"}, class: "form-control") %>
+    </div>
+  <% elsif @listing.macro_category == "Equipamiento Pozos" %>
+    <div class="form-group">
+      <%= f.label :category %><br>
+      <%= f.select(:category, ['Cabezas de Pozo', 'Valvulas y Accesorios', 'Herramientas Pozo', 'Equipos Extracción', 'Otros'], {include_blank: "Select something"}, class: "form-control") %>
+    </div>
+  <% elsif @listing.macro_category == "Equipos Superficie" %>
+    <div class="form-group">
+      <%= f.label :category %><br>
+      <%= f.select(:category, ['Captacion', 'Plantas'], {include_blank: "Select something"}, class: "form-control") %>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.submit class: "btn btn-info"%>
+  </div>
+<% end %>

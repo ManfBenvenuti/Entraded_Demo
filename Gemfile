@@ -28,6 +28,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem "paperclip", "~> 5.0.0"
 gem 'devise'
 
+# Gem to manage step-by-step listing creation
+gem 'wicked'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

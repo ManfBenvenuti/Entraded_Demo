@@ -8,19 +8,34 @@
 	</div>
 
 	<div class="col-md-6">
-		<h3> <%= @listing.category %> </h3>
+		<h3> <%= @listing.short_description %> </h3>
 
-		<p> <strong>Variety:</strong>
-		  <%= @listing.variety %></p>
+		<p> <strong>Descripción Larga:</strong>
+		  <%= @listing.long_description %></p>
 
-		<p> <strong>Flow:</strong>
-		  <%= @listing.flow %></p>
+		<p> <strong>Clasificación:</strong>
+		  <%= @listing.classification %></p>
 
-		<p> <strong>Pressure:</strong>
-		  <%= @listing.pressure %></p>
+		<p> <strong>Clave Adjetivo:</strong>
+		  <%= @listing.key_definition %></p>
 
-		<p> <strong>Year:</strong>
-		  <%= @listing.year %></p>
+		<p> <strong>Propiedades:</strong>
+		  <%= @listing.properties %></p>
+
+		<p> <strong>Marcas:</strong>
+		  <%= @listing.brand %></p>
+
+		<p> <strong>Equipos:</strong>
+		  <%= @listing.equipment %></p>
+
+		<p> <strong>Otras Descripciones:</strong>
+		  <%= @listing.notes %></p>
+
+		<p> <strong>Unidad Medida:</strong>
+		  <%= @listing.measurements %></p>
+
+		<p> <strong>Cantidad:</strong>
+		  <%= @listing.quantity %></p>
 
 		<p> <strong>Price:</strong>
 		  <%= number_to_currency(@listing.price) %></p>
