@@ -21,6 +21,8 @@
       <td class="center"><%= number_to_currency(order.listing.price) %></td>
       <% if order.status == "negotiating"%>
         <td class="center"><%= order.buyer.name %></td>
+      <% elsif order.status == "refused"%>
+        <td class="center">Your refused the order</td>
       <% else %>
         <td class="center">
           <%= link_to "Accept", accept_order_url(order.id), method: :post, class: "btn btn-small btn-success" %>
