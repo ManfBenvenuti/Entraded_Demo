@@ -1,14 +1,26 @@
 
-  <div class="row">
-    <% @listings.each do |listing| %>
-      <div class="col-md-3">
-        <div class="thumbnail">
-          <%= link_to image_tag(listing.image.url), listing %>
-          <div class="caption">
-            <h3> <%= listing.category %> </h3>
-            <p> <%= number_to_currency(listing.price) %> </p>
-          </div>
+<div class="jumbotron text-right">
+
+  <div class="container">
+    <% if user_signed_in? %>
+      <%= link_to 'Add New Listing', new_listing_path, class: "btn btn-success btn-lg" %>
+    <% end %>
+    <h1>Share your energy</br> with trusted partners</h1>
+    <h2><%= "#{params[:category]}, #{params[:sub_category]}"%></h2>
+  </div>
+</div>
+
+
+<div class="row">
+  <% @listings.each do |listing| %>
+    <div class="col-md-3">
+      <div class="thumbnail">
+        <%= link_to image_tag(listing.image.url), listing %>
+        <div class="caption">
+          <h3> <%= listing.category %> </h3>
+          <p> <%= number_to_currency(listing.price) %> </p>
         </div>
       </div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
+</div>
