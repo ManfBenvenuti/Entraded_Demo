@@ -20,6 +20,8 @@
       <td class="center"><%= number_to_currency(order.listing.price) %></td>
       <% if order.status == "negotiating"%>
         <td class="center"><%= order.seller.name %></td>
+      <% elsif order.status == "refused"%>
+        <td class="center">Your order was refused></td>
       <% else %>
         <td class="center">
           Waiting for the buyer to respond
@@ -37,10 +39,10 @@
     <th class="center">Quantity</th>
     <th class="center">Price</th>
     <th class="center">Seller</th>
-    <th class="center">Date Sold</th>
+    <th class="center">Date Bought</th>
   </tr>
 
-  <% @orders_sold.each do |order| %>
+  <% @orders_bought.each do |order| %>
     <tr>
       <td class="center"><%= image_tag order.listing.image.url(:thumb) %></td>
       <td class="center"><%= order.listing.short_description %></td>

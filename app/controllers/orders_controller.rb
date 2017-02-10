@@ -8,6 +8,7 @@ class OrdersController < ApplicationController
   def sales
     @orders = Order.where('"orders"."seller_id" = ? AND "orders"."status" NOT LIKE ?', current_user, "sold").order("created_at DESC")
     @orders_sold = Order.where('"orders"."seller_id" = ? AND "orders"."status" LIKE ?', current_user, "sold").order("created_at DESC")
+    @orders_bought = Order.where('"orders"."buyer_id" = ? AND "orders"."status" LIKE ?', current_user, "sold").order("created_at DESC")
   end
   def purchases
     @orders = Order.all.where(buyer: current_user).order("created_at DESC")
