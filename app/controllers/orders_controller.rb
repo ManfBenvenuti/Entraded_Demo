@@ -53,7 +53,8 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.save
-        UserMailer.received_order(@seller, @order).deliver_now
+        #Temporaneamente disattivato per testare in production
+        #UserMailer.received_order(@seller, @order).deliver_now
 
         format.html { redirect_to purchases_orders_path(@orders_id), notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
@@ -75,7 +76,8 @@ class OrdersController < ApplicationController
     @order = Order.find params[:id]
     @order.status = "refused"
     if @order.save
-      UserMailer.refused_order(@order.buyer, @order).deliver_now
+      #Temporaneamente disattivato per testare in production
+      #UserMailer.refused_order(@order.buyer, @order).deliver_now
     end
     redirect_to sales_orders_path
   end
